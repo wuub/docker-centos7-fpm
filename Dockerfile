@@ -12,3 +12,4 @@ RUN gem instal fpm
 # upgrade python tools to the newest versions
 RUN pip install -U pip virtualenv wheel setuptools
 
+VOLUME /build
