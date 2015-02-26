@@ -11,8 +11,11 @@ RUN yum -y install rpm-build
 RUN gem instal fpm
 # upgrade python tools to the newest versions
 RUN pip install -U pip virtualenv wheel setuptools
+RUN yum -y -v install mariadb-devel libevent-devel libxslt-devel
 
 WORKDIR /build/packaging
-VOLUME /build
+VOLUME /build 
 
-CMD make rpm
+ENV RPMUID 0
+
+CMD make rpm && chown $RPMUID:$RPMUID *.rpm && mv *.rpm .. && make clean
