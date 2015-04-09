@@ -5,7 +5,6 @@ RUN rpm -iUvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.n
 RUN rpm -iUvh http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-13.ius.centos7.noarch.rpm
 RUN yum -y update
 
-
 RUN yum -y groupinstall "Development Tools"
 RUN yum -y install python-pip python-devel ruby ruby-devel rpm-build  
 RUN yum -y install python34u python34u-pip python34u-devel python34u-wheel  
@@ -16,6 +15,7 @@ RUN gem instal fpm
 RUN pip install -U pip virtualenv wheel setuptools
 RUN pip3.4 install -U pip virtualenv wheel setuptools
 RUN yum -y -v install mariadb-devel libevent-devel libxslt-devel snappy-devel
+RUN yum  --enablerepo epel-testing -y -v install nodejs npm
 
 RUN mkdir -p /build/packaging
 WORKDIR /build/packaging
